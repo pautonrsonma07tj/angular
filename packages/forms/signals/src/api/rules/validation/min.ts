@@ -28,7 +28,7 @@ import {minError} from './validation_errors';
  *
  * @see [Signal Form Min Validation](guide/forms/signals/validation#min-and-max)
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export function min<TValue extends number | null, TPathKind extends PathKind = PathKind.Root>(
   path: SchemaPath<TValue, SchemaPathRules.Supported, TPathKind>,

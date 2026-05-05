@@ -22,7 +22,7 @@ export interface ValidationErrorOptions {
  * A type that requires the given type `T` to have a `field` property.
  * @template T The type to add a `field` to.
  *
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export type WithFieldTree<T> = T & {fieldTree: ReadonlyFieldTree<unknown>};
 
@@ -30,7 +30,7 @@ export type WithFieldTree<T> = T & {fieldTree: ReadonlyFieldTree<unknown>};
  * A type that allows the given type `T` to optionally have a `field` property.
  * @template T The type to optionally add a `field` to.
  *
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export type WithOptionalFieldTree<T> = Omit<T, 'fieldTree'> & {
   fieldTree?: ReadonlyFieldTree<unknown>;
@@ -40,7 +40,7 @@ export type WithOptionalFieldTree<T> = Omit<T, 'fieldTree'> & {
  * A type that ensures the given type `T` does not have a `field` property.
  * @template T The type to remove the `field` from.
  *
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export type WithoutFieldTree<T> = T & {fieldTree: never};
 
@@ -48,7 +48,7 @@ export type WithoutFieldTree<T> = T & {fieldTree: never};
  * Create a required error associated with the target field
  * @param options The validation error options
  *
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export function requiredError(
   options: WithFieldTree<ValidationErrorOptions>,
@@ -58,7 +58,7 @@ export function requiredError(
  * @param options The optional validation error options
  *
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export function requiredError(
   options?: ValidationErrorOptions,
@@ -75,7 +75,7 @@ export function requiredError(
  * @param options The validation error options
  *
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export function minError(
   min: number,
@@ -87,7 +87,7 @@ export function minError(
  * @param options The optional validation error options
  *
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export function minError(
   min: number,
@@ -137,7 +137,7 @@ export function minDateError(
  * @param options The validation error options
  *
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export function maxError(
   max: number,
@@ -149,7 +149,7 @@ export function maxError(
  * @param options The optional validation error options
  *
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export function maxError(
   max: number,
@@ -199,7 +199,7 @@ export function maxDateError(
  * @param options The validation error options
  *
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export function minLengthError(
   minLength: number,
@@ -211,7 +211,7 @@ export function minLengthError(
  * @param options The optional validation error options
  *
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export function minLengthError(
   minLength: number,
@@ -230,7 +230,7 @@ export function minLengthError(
  * @param options The validation error options
  *
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export function maxLengthError(
   maxLength: number,
@@ -242,7 +242,7 @@ export function maxLengthError(
  * @param options The optional validation error options
  *
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export function maxLengthError(
   maxLength: number,
@@ -261,7 +261,7 @@ export function maxLengthError(
  * @param options The validation error options
  *
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export function patternError(
   pattern: RegExp,
@@ -273,7 +273,7 @@ export function patternError(
  * @param options The optional validation error options
  *
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export function patternError(
   pattern: RegExp,
@@ -291,7 +291,7 @@ export function patternError(
  * @param options The validation error options
  *
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export function emailError(options: WithFieldTree<ValidationErrorOptions>): EmailValidationError;
 /**
@@ -299,7 +299,7 @@ export function emailError(options: WithFieldTree<ValidationErrorOptions>): Emai
  * @param options The optional validation error options
  *
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export function emailError(
   options?: ValidationErrorOptions,
@@ -321,7 +321,7 @@ export function emailError(
  * @see [Signal Form Validation](guide/forms/signals/validation)
  * @see [Signal Form Validation Errors](guide/forms/signals/validation#validation-errors)
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export interface ValidationError {
   /** Identifies the kind of error. */
@@ -383,7 +383,7 @@ export declare namespace ValidationError {
  * Internal version of `NgValidationError`, we create this separately so we can change its type on
  * the exported version to a type union of the possible sub-classes.
  *
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export abstract class BaseNgValidationError implements ValidationError {
   /** Brand the class to avoid Typescript structural matching */
@@ -409,7 +409,7 @@ export abstract class BaseNgValidationError implements ValidationError {
  * An error used to indicate that a required field is empty.
  *
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export class RequiredValidationError extends BaseNgValidationError {
   override readonly kind = 'required';
@@ -419,7 +419,7 @@ export class RequiredValidationError extends BaseNgValidationError {
  * An error used to indicate that a value is lower than the minimum allowed.
  *
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export class MinValidationError extends BaseNgValidationError {
   override readonly kind = 'min';
@@ -453,7 +453,7 @@ export class MinDateValidationError extends BaseNgValidationError {
  * An error used to indicate that a value is higher than the maximum allowed.
  *
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export class MaxValidationError extends BaseNgValidationError {
   override readonly kind = 'max';
@@ -487,7 +487,7 @@ export class MaxDateValidationError extends BaseNgValidationError {
  * An error used to indicate that a value is shorter than the minimum allowed length.
  *
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export class MinLengthValidationError extends BaseNgValidationError {
   override readonly kind = 'minLength';
@@ -504,7 +504,7 @@ export class MinLengthValidationError extends BaseNgValidationError {
  * An error used to indicate that a value is longer than the maximum allowed length.
  *
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export class MaxLengthValidationError extends BaseNgValidationError {
   override readonly kind = 'maxLength';
@@ -521,7 +521,7 @@ export class MaxLengthValidationError extends BaseNgValidationError {
  * An error used to indicate that a value does not match the required pattern.
  *
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export class PatternValidationError extends BaseNgValidationError {
   override readonly kind = 'pattern';
@@ -538,7 +538,7 @@ export class PatternValidationError extends BaseNgValidationError {
  * An error used to indicate that a value is not a valid email.
  *
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export class EmailValidationError extends BaseNgValidationError {
   override readonly kind = 'email';
@@ -548,7 +548,7 @@ export class EmailValidationError extends BaseNgValidationError {
  * An error used to indicate that a value entered in a native input does not parse.
  *
  * @category validation
- * @experimental 21.2.0
+ * @publicApi 22.0
  */
 export class NativeInputParseError extends BaseNgValidationError {
   override readonly kind = 'parse';
@@ -577,7 +577,7 @@ export class NativeInputParseError extends BaseNgValidationError {
  * ```
  *
  * @category validation
- * @experimental 21.0.0
+ * @publicApi 22.0
  */
 export const NgValidationError: abstract new () => NgValidationError = BaseNgValidationError as any;
 export type NgValidationError =
